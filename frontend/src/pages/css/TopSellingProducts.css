@@ -1,0 +1,50 @@
+.top-products-page {
+  width: 100%;
+}
+
+.top-products-page h1 {
+  margin-bottom: 22px;
+  font-size: 34px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.top-products-card {
+  background: white;
+  padding: 25px;
+  border-radius: 18px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+  border: 1px solid #e2e8f0;
+}
+
+.top-ranking-table {
+  margin-top: 30px;
+}
+
+.top-ranking-table h2 {
+  margin-bottom: 15px;
+  color: #0f172a;
+}
+
+.top-ranking-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.top-ranking-table th {
+  background: #f8fafc;
+  text-align: left;
+  padding: 14px;
+  color: #334155;
+  font-weight: 800;
+}
+
+.top-ranking-table td {
+  padding: 14px;
+  border-top: 1px solid #e2e8f0;
+  color: #334155;
+}
+
+.top-ranking-table tr:hover {
+  background: #f8fafc;
+}

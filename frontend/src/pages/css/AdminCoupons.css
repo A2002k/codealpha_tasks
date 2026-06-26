@@ -1,0 +1,125 @@
+.coupons-page h1 {
+  margin-bottom: 24px;
+  font-size: 34px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.coupons-layout {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 25px;
+}
+
+.coupon-form-card,
+.coupons-table-card {
+  background: white;
+  padding: 22px;
+  border-radius: 18px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+  border: 1px solid #e2e8f0;
+}
+
+.coupon-form-card h2,
+.coupons-table-card h2 {
+  margin-bottom: 18px;
+}
+
+.coupon-form-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.coupon-form-card input {
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid #cbd5e1;
+  outline: none;
+}
+
+.coupon-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+}
+
+.coupon-save-btn,
+.coupon-cancel-btn,
+.coupon-edit-btn,
+.coupon-delete-btn {
+  border: none;
+  border-radius: 10px;
+  padding: 10px 13px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.coupon-save-btn {
+  background: #2563eb;
+  color: white;
+}
+
+.coupon-cancel-btn {
+  background: #e5e7eb;
+}
+
+.coupon-edit-btn {
+  background: #facc15;
+  margin-right: 8px;
+}
+
+.coupon-delete-btn {
+  background: #ef4444;
+  color: white;
+}
+
+.coupons-table-card {
+  overflow-x: auto;
+}
+
+.coupons-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.coupons-table th {
+  background: #f8fafc;
+  color: #334155;
+  text-align: left;
+  padding: 14px;
+  font-weight: 800;
+}
+
+.coupons-table td {
+  padding: 14px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.coupon-status {
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 13px;
+}
+
+.coupon-status.active {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.coupon-status.inactive {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+@media (max-width: 900px) {
+  .coupons-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .coupons-table {
+    min-width: 750px;
+  }
+}
