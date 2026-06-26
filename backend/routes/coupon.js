@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Coupon = require("../models/Coupon");
+const Coupon = require("../models/coupon");
 
 // CREATE coupon
 router.post("/", async (req, res) => {

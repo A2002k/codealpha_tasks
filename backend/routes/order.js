@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const Order = require("../models/Order");
-const User = require("../models/User");
-const Product = require("../models/Product");
+const Order = require("../models/order");
+const User = require("../models/user");
+const Product = require("../models/product");
 const authMiddleware = require("../middleware/authMiddleware");
-const sendEmail = require("../utils/sendEmail");
+const sendEmail = require("../utils/SendEmail");
 
 
 

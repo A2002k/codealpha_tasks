@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const Order = require("../../models/Order");
-const Product = require("../../models/Product");
-const sendEmail = require("../../utils/sendEmail");
+const Order = require("../../models/order");
+const Product = require("../../models/product");
+const sendEmail = require("../../utils/SendEmail");
 
 // ADMIN: Get all orders
 router.get("/all", async (req, res) => {
