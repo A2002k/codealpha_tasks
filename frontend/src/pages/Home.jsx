@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import API from "../api/axios";
 import { Link } from "react-router-dom";
-import "./css/Home.css";
+import "./css/home.css";
 import PromoPopup from "./PromoPopup";
 
 function Home() {

@@ -7,7 +7,7 @@ import Cart from "./pages/Cart";
 import Order from "./pages/Order";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Admin from "./admin-pages/Admin";
+import Admin from "./admin-pages/admin";
 import ProductDetails from "./pages/ProductDetails";
 import AdminOrders from "./admin-pages/AdminOrders";
 import AdminRoute from "./components/AdminRoute";
