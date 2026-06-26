@@ -6,8 +6,20 @@ const path = require("path");
 
 const app = express();
 
-app.use(cors());
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://codealpha-tasks-steel.vercel.app"
+];
+
+app.use(
+  cors({
+    origin: allowedOrigins,
+    credentials: true,
+  })
+);
+
 app.use(express.json());
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 mongoose
   .connect(process.env.MONGO_URI)
@@ -52,7 +64,5 @@ app.use("/api/coupons", couponRoutes);
 const wishlistRoutes = require("./routes/wishlist");
 app.use("/api/wishlist", wishlistRoutes);
 
-// upload images
-app.use(cors());
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
 
