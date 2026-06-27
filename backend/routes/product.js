@@ -24,9 +24,9 @@ router.post("/", upload.single("image"), async (req, res) => {
 console.log("FILE:", req.file);
     const { name, price, description, category, stock } = req.body;
 
-    const imageUrl = req.file
-      ? `http://localhost:5000/uploads/${req.file.filename}`
-      : "";
+  const imageUrl = req.file
+  ? `https://codealpha-tasks-ftxd.onrender.com/uploads/${req.file.filename}`
+  : "";
 
       const product = await Product.create({
         name,
@@ -77,7 +77,7 @@ router.put("/:id", upload.single("image"), async (req, res) => {
     };
 
     if (req.file) {
-      updateData.image = `http://localhost:5000/uploads/${req.file.filename}`;
+     updateData.image = `https://codealpha-tasks-ftxd.onrender.com/uploads/${req.file.filename}`;
     }
 
     const product = await Product.findByIdAndUpdate(
