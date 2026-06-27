@@ -65,28 +65,25 @@ router.post("/", authMiddleware, async (req, res) => {
     });
 
 // Send email notification to user
-   try {
-  await sendEmail({
-    to: user.email,
-    subject: "Order Placed Successfully",
-    html: `
-      <h2>Thank you for your order, ${user.name} 🎉</h2>
-      <p>Your order has been placed successfully.</p>
-      <p><strong>Order ID:</strong> #${order._id}</p>
-      <p><strong>Subtotal:</strong> $${totalPrice}</p>
-      <p><strong>Discount:</strong> -$${calculatedDiscount}</p>
-      <p><strong>Delivery:</strong> $${Number(deliveryFee || 0)}</p>
-      <p><strong>Total:</strong> $${calculatedFinalTotal}</p>
-      <p><strong>Status:</strong> Pending</p>
-      <br />
-      <p>We will contact you soon for delivery.</p>
-      <p>Thank you for shopping with AK Store.</p>
-    `,
-  });
-} catch (emailError) {
+   sendEmail({
+  to: user.email,
+  subject: "Order Placed Successfully",
+  html: `
+    <h2>Thank you for your order, ${user.name} 🎉</h2>
+    <p>Your order has been placed successfully.</p>
+    <p><strong>Order ID:</strong> #${order._id}</p>
+    <p><strong>Subtotal:</strong> $${totalPrice}</p>
+    <p><strong>Discount:</strong> -$${calculatedDiscount}</p>
+    <p><strong>Delivery:</strong> $${Number(deliveryFee || 0)}</p>
+    <p><strong>Total:</strong> $${calculatedFinalTotal}</p>
+    <p><strong>Status:</strong> Pending</p>
+    <br />
+    <p>We will contact you soon for delivery.</p>
+    <p>Thank you for shopping with AK Store.</p>
+  `,
+}).catch((emailError) => {
   console.log("Email sending failed:", emailError.message);
-}
-
+});
     // 3. Decrease stock after order is created
     for (const item of user.cart) {
       await Product.findByIdAndUpdate(item.productId._id, {
