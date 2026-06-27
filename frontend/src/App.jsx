@@ -35,7 +35,7 @@ function App() {
         <Route path="/admin/top-products" element={ <AdminRoute> <TopSellingProducts /> </AdminRoute>}/>
         <Route path="/admin/coupons" element={ <AdminRoute> <AdminCoupons /> </AdminRoute>}/>
         <Route path="/wishlist" element={<Wishlist />} />
-        
+        <Route path="/payment-success" element={<h1>✅ Order placed successfully</h1>} />
         </Route>
 
       {/* AUTH PAGES (NO SIDEBAR) */}
