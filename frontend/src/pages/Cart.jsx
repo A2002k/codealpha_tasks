@@ -141,20 +141,24 @@ function Cart() {
 
       alert("Order placed successfully 🎉");
 
-      setCart([]);
-      setCoupon(null);
-      setCouponCode("");
-      setDiscountAmount(0);
-      setAddress("");
-      setPhone("");
-      setCardInfo({
-        cardName: "",
-        cardNumber: "",
-        expiry: "",
-        cvv: "",
-      });
+         setCart([]);
+        setCoupon(null);
+        setCouponCode("");
+        setDiscountAmount(0);
+        setAddress("");
+        setPhone("");
+        setCardInfo({
+          cardName: "",
+          cardNumber: "",
+          expiry: "",
+          cvv: "",
+        });
 
-      navigate("/order");
+        alert("Order placed successfully 🎉");
+
+        setTimeout(() => {
+          navigate("/order");
+        }, 500);
     } catch (err) {
       alert(err.response?.data?.message || "Checkout failed");
     }
