@@ -1,31 +1,27 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import API from "../api/axios";
 import "./css/Cart.css";
 
 function Cart() {
-  const [cart, setCart] = useState([]);
+  const navigate = useNavigate();
 
+  const [cart, setCart] = useState([]);
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
 
   const [couponCode, setCouponCode] = useState("");
   const [coupon, setCoupon] = useState(null);
   const [discountAmount, setDiscountAmount] = useState(0);
+
   const [paymentMethod, setPaymentMethod] = useState("Cash on Delivery");
 
-const [cardInfo, setCardInfo] = useState({
-  cardName: "",
-  cardNumber: "",
-  expiry: "",
-  cvv: "",
-});
-
-const handleCardChange = (e) => {
-  setCardInfo({
-    ...cardInfo,
-    [e.target.name]: e.target.value,
+  const [cardInfo, setCardInfo] = useState({
+    cardName: "",
+    cardNumber: "",
+    expiry: "",
+    cvv: "",
   });
-};
 
   useEffect(() => {
     fetchCart();
@@ -38,6 +34,13 @@ const handleCardChange = (e) => {
     } catch (err) {
       console.log(err);
     }
+  };
+
+  const handleCardChange = (e) => {
+    setCardInfo({
+      ...cardInfo,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const increaseQty = async (productId) => {
@@ -92,7 +95,8 @@ const handleCardChange = (e) => {
         code: couponCode,
       });
 
-      const discount = (totalPrice * Number(res.data.discountPercent)) / 100;
+      const discount =
+        (totalPrice * Number(res.data.discountPercent)) / 100;
 
       setCoupon(res.data);
       setDiscountAmount(discount);
@@ -107,8 +111,12 @@ const handleCardChange = (e) => {
 
   const checkout = async () => {
     try {
+      if (!address || !phone) {
+        alert("Please enter your address and phone number");
+        return;
+      }
 
-            if (paymentMethod === "Card") {
+      if (paymentMethod === "Card") {
         if (
           !cardInfo.cardName ||
           cardInfo.cardNumber.length < 12 ||
@@ -119,6 +127,7 @@ const handleCardChange = (e) => {
           return;
         }
       }
+
       await API.post("/orders", {
         address,
         phone,
@@ -136,6 +145,16 @@ const handleCardChange = (e) => {
       setCoupon(null);
       setCouponCode("");
       setDiscountAmount(0);
+      setAddress("");
+      setPhone("");
+      setCardInfo({
+        cardName: "",
+        cardNumber: "",
+        expiry: "",
+        cvv: "",
+      });
+
+      navigate("/order");
     } catch (err) {
       alert(err.response?.data?.message || "Checkout failed");
     }
@@ -242,73 +261,73 @@ const handleCardChange = (e) => {
             />
 
             <div className="payment-box">
-  <h3>💳 Payment Method</h3>
+              <h3>💳 Payment Method</h3>
 
-  <label className="payment-option">
-    <input
-      type="radio"
-      value="Cash on Delivery"
-      checked={paymentMethod === "Cash on Delivery"}
-      onChange={(e) => setPaymentMethod(e.target.value)}
-    />
-    💵 Cash on Delivery
-  </label>
+              <label className="payment-option">
+                <input
+                  type="radio"
+                  value="Cash on Delivery"
+                  checked={paymentMethod === "Cash on Delivery"}
+                  onChange={(e) => setPaymentMethod(e.target.value)}
+                />
+                💵 Cash on Delivery
+              </label>
 
-  <label className="payment-option">
-    <input
-      type="radio"
-      value="Card"
-      checked={paymentMethod === "Card"}
-      onChange={(e) => setPaymentMethod(e.target.value)}
-    />
-    💳 Credit / Debit Card
-  </label>
+              <label className="payment-option">
+                <input
+                  type="radio"
+                  value="Card"
+                  checked={paymentMethod === "Card"}
+                  onChange={(e) => setPaymentMethod(e.target.value)}
+                />
+                💳 Credit / Debit Card
+              </label>
 
-  {paymentMethod === "Card" && (
-    <div className="card-payment-form">
-      <input
-        type="text"
-        name="cardName"
-        placeholder="Cardholder Name"
-        value={cardInfo.cardName}
-        onChange={handleCardChange}
-      />
+              {paymentMethod === "Card" && (
+                <div className="card-payment-form">
+                  <input
+                    type="text"
+                    name="cardName"
+                    placeholder="Cardholder Name"
+                    value={cardInfo.cardName}
+                    onChange={handleCardChange}
+                  />
 
-      <input
-        type="text"
-        name="cardNumber"
-        placeholder="Card Number"
-        maxLength="16"
-        value={cardInfo.cardNumber}
-        onChange={handleCardChange}
-      />
+                  <input
+                    type="text"
+                    name="cardNumber"
+                    placeholder="Card Number"
+                    maxLength="16"
+                    value={cardInfo.cardNumber}
+                    onChange={handleCardChange}
+                  />
 
-      <div className="card-row">
-        <input
-          type="text"
-          name="expiry"
-          placeholder="MM/YY"
-          maxLength="5"
-          value={cardInfo.expiry}
-          onChange={handleCardChange}
-        />
+                  <div className="card-row">
+                    <input
+                      type="text"
+                      name="expiry"
+                      placeholder="MM/YY"
+                      maxLength="5"
+                      value={cardInfo.expiry}
+                      onChange={handleCardChange}
+                    />
 
-        <input
-          type="password"
-          name="cvv"
-          placeholder="CVV"
-          maxLength="4"
-          value={cardInfo.cvv}
-          onChange={handleCardChange}
-        />
-      </div>
+                    <input
+                      type="password"
+                      name="cvv"
+                      placeholder="CVV"
+                      maxLength="4"
+                      value={cardInfo.cvv}
+                      onChange={handleCardChange}
+                    />
+                  </div>
 
-      <p className="demo-payment-note">
-        Demo payment only — no real money is charged.
-      </p>
-    </div>
-  )}
-</div>
+                  <p className="demo-payment-note">
+                    Demo payment only — no real money is charged.
+                  </p>
+                </div>
+              )}
+            </div>
 
             <button className="checkout-btn" onClick={checkout}>
               Checkout 💳
