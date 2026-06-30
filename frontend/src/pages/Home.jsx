@@ -3,7 +3,7 @@ import API from "../api/axios";
 import { Link } from "react-router-dom";
 import "./css/home.css";
 import PromoPopup from "./PromoPopup";
-import AIChat from "../components/AIChat/AIChat";
+import AIChat from "../components/AIchat/AIchat";
 
 function Home() {
   const [products, setProducts] = useState([]);
