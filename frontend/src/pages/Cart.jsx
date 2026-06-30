@@ -9,13 +9,10 @@ function Cart() {
   const [cart, setCart] = useState([]);
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
-
   const [couponCode, setCouponCode] = useState("");
   const [coupon, setCoupon] = useState(null);
   const [discountAmount, setDiscountAmount] = useState(0);
-
   const [paymentMethod, setPaymentMethod] = useState("Cash on Delivery");
-
   const [cardInfo, setCardInfo] = useState({
     cardName: "",
     cardNumber: "",
@@ -139,7 +136,7 @@ function Cart() {
         paymentStatus: paymentMethod === "Card" ? "Paid" : "Pending",
       });
 
-      alert("Order placed successfully 🎉");
+      
 
          setCart([]);
         setCoupon(null);
