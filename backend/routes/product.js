@@ -22,7 +22,7 @@ router.post("/", upload.single("image"), async (req, res) => {
   try {
     console.log("BODY:", req.body);
 console.log("FILE:", req.file);
-    const { name, price, description, category, stock } = req.body;
+    const { name, price, description, category, stock, isBestSeller } = req.body;
 
   const imageUrl = req.file
   ? `https://codealpha-tasks-ftxd.onrender.com/uploads/${req.file.filename}`
@@ -35,7 +35,8 @@ console.log("FILE:", req.file);
         category,
         stock: Number(stock) || 0,
         image: imageUrl,
-      });
+        isBestSeller: isBestSeller === "true" || isBestSeller === true,
+      }); console.log("BEST SELLER:", req.body.isBestSeller);
 
     res.status(201).json(product);
   } catch (err) {
@@ -66,7 +67,7 @@ router.get("/:id", async (req, res) => {
 // UPDATE product
 router.put("/:id", upload.single("image"), async (req, res) => {
   try {
-    const { name, price, description, category, stock } = req.body;
+    const { name, price, description, category, stock,isBestSeller } = req.body;
 
       let updateData = {
       name,
@@ -74,6 +75,7 @@ router.put("/:id", upload.single("image"), async (req, res) => {
       description,
       category,
       stock: Number(stock) || 0,
+      isBestSeller: isBestSeller === "true" || isBestSeller === true,
     };
 
     if (req.file) {
@@ -90,6 +92,7 @@ router.put("/:id", upload.single("image"), async (req, res) => {
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
+   console.log("BEST SELLER:", req.body.isBestSeller);
 });
 
 // DELETE product
@@ -144,5 +147,6 @@ router.post("/:id/reviews", authMiddleware, async (req, res) => {
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
+ 
 });
 module.exports = router;

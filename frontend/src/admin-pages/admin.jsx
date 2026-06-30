@@ -14,6 +14,7 @@ const [categoryFilter, setCategoryFilter] = useState("All");
     description: "",
     category: "",
     stock: "",
+    isBestSeller: false,
   });
 
   const [imageFile, setImageFile] = useState(null);
@@ -37,6 +38,7 @@ const [categoryFilter, setCategoryFilter] = useState("All");
       description: "",
       category: "",
       stock: "",
+      isBestSeller: false,
     });
     setImageFile(null);
     setImagePreview("");
@@ -70,6 +72,7 @@ const [categoryFilter, setCategoryFilter] = useState("All");
       productData.append("description", form.description);
       productData.append("category", form.category);
       productData.append("stock", form.stock);
+      productData.append("isBestSeller", form.isBestSeller);
 
       if (imageFile) {
         productData.append("image", imageFile);
@@ -108,6 +111,7 @@ const [categoryFilter, setCategoryFilter] = useState("All");
       description: product.description || "",
       category: product.category || "",
       stock: product.stock || "",
+      isBestSeller: product.isBestSeller || false,
     });
 
     setImagePreview(product.image || "");
@@ -160,6 +164,7 @@ const filteredProducts = products.filter((product) => {
           <span>Inventory Value</span>
           <h2>${totalValue}</h2>
         </div>
+
       </div>
 
       <div className="admin-layout">
@@ -224,6 +229,21 @@ const filteredProducts = products.filter((product) => {
                 className="admin-preview"
               />
             )}
+
+            <label className="checkbox-row">
+              <input
+                type="checkbox"
+                name="isBestSeller"
+                checked={form.isBestSeller}
+                onChange={(e) =>
+                  setForm({
+                    ...form,
+                    isBestSeller: e.target.checked,
+                  })
+                }
+              />
+              Mark as Best Seller
+            </label>
 
             <button type="submit" className="save-btn">
               {editingId ? "Update Product" : "Add Product"}

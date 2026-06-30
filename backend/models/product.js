@@ -30,6 +30,11 @@ const productSchema = new mongoose.Schema(
     category: String,
     stock: { type: Number, default: 0 },
 
+      isBestSeller: {
+    type: Boolean,
+    default: false,
+  },
+
     reviews: [reviewSchema],
 
     rating: {
