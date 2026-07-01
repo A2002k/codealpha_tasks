@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import API from "../api/axios";
 import "./css/home.css";
 import PromoPopup from "./PromoPopup";
-import AIChat from "../components/AIChat/AIChat";
+import AIChat from "../components/AIchat/AIchat";
 import Hero from "../components/home/Hero";
 import CategorySection from "../components/home/CategorySection";
 import ProductSection from "../components/home/ProductSection";
