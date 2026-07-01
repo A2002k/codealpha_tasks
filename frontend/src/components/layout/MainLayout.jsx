@@ -110,7 +110,7 @@ function MainLayout() {
             <>
               <div className="sidebar-section-title">ADMIN</div>
 
-              <Link className={linkClass("/admin")} to="/admin">
+              <Link className={linkClass("/admin")} to="/admin"  onClick={() => setMenuOpen(false)}>
                 ⚙️ Products Admin
               </Link>
 

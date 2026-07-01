@@ -109,7 +109,7 @@ function Home() {
       return { cat, product };
     });
 
-  const heroProducts = products.slice(0, 3);
+  const heroProducts = products.slice(0, 10);
   const bestSellers = products.filter((p) => p.isBestSeller === true);
   const allProducts = filteredProducts;
 
@@ -118,7 +118,7 @@ function Home() {
       <PromoPopup />
 
       <div className="top-strip">
-        <span>🚚 Free Shipping on orders over $50</span>
+        <span>🚚 Free Shipping on orders over $100</span>
         <span>↩️ 30-Day Return Policy</span>
         <span>📦 Track Order</span>
         <button className="help-support-btn" onClick={() => chatRef.current?.openChat()}>
@@ -134,7 +134,7 @@ function Home() {
 
         <nav className="nav-links">
           <a href="#home">Home</a>
-          <a href="#categories">Shop</a>
+          <a href="#all-products">Shop</a>
           <a href="#best-sellers">Best Sellers</a>
           <a href="#new">New Arrivals</a>
           <a href="#sale">Sale</a>
@@ -160,6 +160,7 @@ function Home() {
 />
 
 <ProductSection
+  id="best-sellers"
   title="BEST SELLERS"
   products={bestSellers}
   categories={categories}
@@ -171,6 +172,7 @@ function Home() {
 />
 
 <ProductSection
+  id="all-products"
   title="ALL PRODUCTS"
   products={allProducts}
   categories={categories}

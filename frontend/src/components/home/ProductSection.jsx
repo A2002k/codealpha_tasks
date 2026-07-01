@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
 function ProductSection({
+  id,
   title,
   products,
   categories,
@@ -12,7 +13,7 @@ function ProductSection({
   showCategoryTabs = true,
 }) {
   return (
-    <section className="products-section">
+    <section id={id} className="products-section">
       <div className="section-heading">
         <h2>{title}</h2>
 
